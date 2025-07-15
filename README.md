@@ -34,7 +34,6 @@ Navigate to the directory where your `requirements.txt` file is located (typical
 pip3 install -r requirements.txt
 ```
 
-*(Note: Ensure your `requirements.txt` includes `Pillow` and `requests`.)*
 
 ## How to Run
 
