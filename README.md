@@ -1,74 +1,91 @@
-Command-Line Meme Generator
-This project is a command-line application developed as part of an Intermediate Python class project.
+# Command-Line Meme Generator
 
-Features
-Random Meme Generation: Automatically selects a random image from a local directory and a random quote from various supported file types.
+This project is a command-line application developed as part of an **Intermediate Python class project**. Its purpose is to demonstrate object-oriented programming, file handling, external command execution, and command-line argument parsing by generating memes.
 
-Custom Meme Creation: Allows users to specify an image (local path or URL), a quote body, and an author via command-line arguments.
+## Features
 
-Multi-format Quote Ingestion: Supports parsing quotes from .txt, .docx, .pdf, and .csv files.
+* **Random Meme Generation**: Automatically selects a random image from a local directory and a random quote from various supported file types.
 
+* **Custom Meme Creation**: Allows users to specify an image (local path or URL), a quote body, and an author via command-line arguments.
 
-Setup and Installation
-Prerequisites
-Python 3.7+
+* **Multi-format Quote Ingestion**: Supports parsing quotes from `.txt`, `.docx`, `.pdf`, and `.csv` files.
 
-pip (Python package installer)
+## Setup and Installation
 
-pdftotext: For PDF ingestion, you need the pdftotext command-line tool. This is typically part of the Xpdf or Poppler utilities.
+### Prerequisites
 
-On Linux (Debian/Ubuntu): sudo apt-get install poppler-utils
+* Python 3.7+
 
-On macOS: brew install xpdf (or brew install poppler)
+* `pip` (Python package installer)
 
-On Windows: Download Xpdf tools from xpdfreader.com and add the bin directory to your system's PATH.
+* **`pdftotext`**: For PDF ingestion, you need the `pdftotext` command-line tool. This is typically part of the Xpdf or Poppler utilities.
 
-Install Python Dependencies
+    * **On Linux (Debian/Ubuntu)**: `sudo apt-get install poppler-utils`
 
-pip3 install -r requirements.txt 
+    * **On macOS**: `brew install xpdf` (or `brew install poppler`)
 
-How to Run
+    * **On Windows**: Download Xpdf tools from [xpdfreader.com](https://www.xpdfreader.com/download.html) and add the `bin` directory to your system's PATH.
 
-first *Mandadory*
+### Install Python Dependencies
 
-cd src 
+Navigate to the directory where your `requirements.txt` file is located (typically the project root) and install the required Python packages:
+
+```bash
+pip3 install -r requirements.txt
+```
+
+*(Note: Ensure your `requirements.txt` includes `Pillow` and `requests`.)*
+
+## How to Run
+
+First, navigate to the `src` directory where `meme_generator.py` (or `meme.py` if you renamed it) and `app.py` are located:
+
+```bash
+cd src
+```
+
+### Command-Line Meme Generation
 
 Execute the script from your terminal:
 
-Generate a Random Meme
+**Example 1: Generate a Random Meme**
 
-exaple 1
-python3 meme.py 
+```bash
+python3 meme.py
+```
 
-example 2
+This will print the path to the newly generated meme file in the `./tmp` directory.
 
-python3 meme.py --author tester3 --body "here aim again " --path _data/photos/dog/xander_3.jpg
+**Example 2: Create a Custom Meme (with local image)**
 
-example 3 
+```bash
+python3 meme.py --author tester3 --body "here i am again" --path _data/photos/dog/xander_3.jpg
+```
 
-run flask server 
+### Run Flask Server (Web Application)
 
-python3 app.py  
+To run the web version of the meme generator:
 
-browse to (http://127.0.0.1:5000)
+```bash
+python3 app.py
+```
 
+Browse to `http://127.0.0.1:5000` in your web browser.
 
-Class Roles
-QuoteModel: A data structure to encapsulate a quote's body (text) and author.
+## Class Roles
 
-IngestorInterface: An abstract base class defining the common interface (can_ingest, parse) for all quote ingestors.
+* **`QuoteModel`**: A data structure to encapsulate a quote's `body` (text) and `author`.
 
-TextIngestor: Concrete implementation of IngestorInterface for parsing quotes from plain .txt files. 
+* **`IngestorInterface`**: An abstract base class defining the common interface (`can_ingest`, `parse`) for all quote ingestors.
 
+* **`TextIngestor`**: Concrete implementation of `IngestorInterface` for parsing quotes from plain `.txt` files.
 
-PDFIngestor: Concrete implementation for parsing quotes from .pdf files using the external pdftotext command-line tool.
+* **`PDFIngestor`**: Concrete implementation for parsing quotes from `.pdf` files using the external `pdftotext` command-line tool.
 
-DocxIngestor: Concrete implementation for parsing quotes from .docx files. 
+* **`DocxIngestor`**: Concrete implementation for parsing quotes from `.docx` files.
 
+* **`CSVIngestor`**: Concrete implementation for parsing quotes from `.csv` files.
 
-CSVIngestor: Concrete implementation for parsing quotes from .csv files. 
+* **`Ingestor`**: A static dispatcher class that determines which specific `IngestorInterface` implementation can handle a given file and then calls its `parse` method.
 
-
-Ingestor: A static dispatcher class that determines which specific IngestorInterface implementation can handle a given file and then calls its parse method.
-
-MemeEngine: Handles the core meme creation logic. It takes an image path, quote body, and author, then uses the Pillow library to resize the image and overlay the text, saving the result to an output directory.
+* **`MemeEngine`**: Handles the core meme creation logic. It takes an image path, quote body, and author, then uses the Pillow library to resize the image and overlay the text, saving the result to an output directory.
