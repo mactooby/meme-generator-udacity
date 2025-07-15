@@ -38,7 +38,7 @@ pip3 install -r requirements.txt
 
 ## How to Run
 
-First, navigate to the `src` directory where `meme_generator.py` (or `meme.py` if you renamed it) and `app.py` are located:
+First, navigate to the `src` directory where `meme.py` and `app.py` are located:
 
 ```bash
 cd src
