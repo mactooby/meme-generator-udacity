@@ -8,8 +8,7 @@ import tempfile
 # @TODO Import your Ingestor and MemeEngine classes
 
 from MemeEngine import MemeEngine
-from QuoteEngine import Ingestor
-#import QuoteEngine
+from QuoteEngine import Ingestor,QuoteModel
 
 import os 
 
