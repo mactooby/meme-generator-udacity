@@ -10,6 +10,7 @@ from .DOCXIngestor import DOCXIngestor
 from .PDFIngestor import PDFIngestor
 from .TextIngestor import TextIngestor
 
+import os
 
 class Ingestor(IngestorInterface):
     """
